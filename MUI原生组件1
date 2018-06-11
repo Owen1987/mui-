@@ -219,4 +219,43 @@ MUI的原生组件：
                 </div>
             </div>
       </div>  
-      
+  
+  9.输入框 input
+  所有包裹在.mui-input-row 类中的 input、textarea等元素都将被默认设置宽度属性为width: 100%; 。 将 label 元素和上述控件控件包裹在.mui-input-group中可以获得最好的排列。
+    1.input上加类 mui-input-clear为快速删除
+    2.在.mui-input-row同级添加.mui-input-search 类
+    3.input上加类mui-input-speech为语音输入
+    4.给input元素添加.mui-input-password类即可密码框使用
+	<form class="mui-input-group">
+	   <div class="mui-input-row mui-search">
+              <input type="search" class="mui-input-clear" placeholder="">
+          </div>
+	    <div class="mui-input-row">
+		<label>用户名</label>
+	    <input type="text" class="mui-input-clear" placeholder="请输入用户名">
+	    </div>
+	    <div class="mui-input-row">
+		<label>密码</label>
+		<input type="password" class="mui-input-password" placeholder="请输入密码">
+	    </div>
+	    <div class="mui-button-row">
+		<button type="button" class="mui-btn mui-btn-primary" >确认</button>
+		<button type="button" class="mui-btn mui-btn-danger" >取消</button>
+	    </div>
+	</form>
+	
+	mui在mui.init()中会自动初始化基本控件,但是 动态添加的Input组件需要重新进行初始化
+           mui('.mui-input-row input').input(); 
+	 
+			mui("#input_example input").each(function() {
+			//若当前input为空，则alert提醒 
+			if(!this.value || this.value.trim() == "") {
+			    var label = this.previousElementSibling;
+			    mui.alert(label.innerText + "不允许为空");
+			    check = false;
+			    return false;
+			}
+			}); //校验通过，继续执行业务逻辑 
+			if(check){
+			    mui.alert('验证通过!')
+			}
