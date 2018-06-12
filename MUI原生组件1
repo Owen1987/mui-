@@ -1,6 +1,7 @@
 MUI的原生组件：
 以iOS 7为基础，补充部分Android特有控件
-
+ accordion（折叠面板）actionsheet（操作表） badge（数字角标） button（按钮） cardview（卡片视图）checkbox（复选框）dialog（对话框）
+ gallery（图片轮播）grid（.栅格）input（输入框）list（列表）  number box（数字输入框）range（滑块）switch（开关）
   1.折叠面板  accordion    Hbuild的快捷键maccordion
   
      <ul class="mui-table-view"> 
@@ -142,7 +143,7 @@ MUI的原生组件：
        .closePopup(只能关闭H5模式的对话框)--关闭最后一次弹出的对话框
        .closePopups(只能关闭H5模式的对话框)--关闭所有对话框
 
-7.图片轮播slide（gallery） 快捷键mslider
+8.图片轮播slide（gallery） 快捷键mslider
   1.不循环
     <div class="mui-slider">
     <div class="mui-slider-group">
@@ -179,7 +180,7 @@ MUI的原生组件：
 				  interval:500//自动轮播周期，若为0则不自动播放，默认为0；
 				});
    
-   8.栅格grid     快捷键mrow   mcolsm   mcolxs
+   9.栅格grid     快捷键mrow   mcolsm   mcolxs
        12列响应式栅格系统xs（超小屏幕<400px）sm(>=400px);
        在外围容器上添加.mui-row，在列上添加 .mui-col-[sm|xs]-[1-12]
           <div class="mui-content">
@@ -220,7 +221,7 @@ MUI的原生组件：
             </div>
       </div>  
   
-  9.输入框 input
+  10.输入框 input
   所有包裹在.mui-input-row 类中的 input、textarea等元素都将被默认设置宽度属性为width: 100%; 。 将 label 元素和上述控件控件包裹在.mui-input-group中可以获得最好的排列。
     1.input上加类 mui-input-clear为快速删除
     2.在.mui-input-row同级添加.mui-input-search 类
@@ -259,7 +260,7 @@ MUI的原生组件：
 			if(check){
 			    mui.alert('验证通过!')
 			}
-10.列表-list    mlist
+11.列表-list    mlist
 	<ul class="mui-table-view">
 	    <li class="mui-table-view-cell">Item 1</li>
 	    <li class="mui-table-view-cell">Item 2</li>
@@ -307,7 +308,7 @@ MUI的原生组件：
 			</a>
 		    </li>
 	    </ul>
-   11. 数字输入框 number box    快捷键mnumbox
+   12. 数字输入框 number box    快捷键mnumbox
         	data-numbox-step--步长 data-numbox-min--最小值 data-numbox-max--最大值
    	<div class="mui-numbox" data-numbox-step='10' data-numbox-min='0' data-numbox-max='100'>
 		  <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
@@ -323,13 +324,13 @@ MUI的原生组件：
         mui在mui.init()中会自动初始化基本控件,但是 动态添加的Numbox组件需要手动初始化
             初始化----- - mui(Selector).numbox()
 	    
-12.滑块  range  快捷键mrange 常用于区间数字选择
+13.滑块  range  快捷键mrange 常用于区间数字选择
      <div class="mui-input-row mui-input-range">
 	 <label>Range</label>
 	 <input type="range" min="0" max="100">
       </div>
    
- 13.开关switch    快捷键mswitch   有点击 滑动两种手势即可
+ 14.开关switch    快捷键mswitch   有点击 滑动两种手势即可
 	 <!-- 默认绿色开关 -->
 	 <div class="mui-switch">
 		 <div class="mui-switch-handle"></div>
