@@ -123,7 +123,76 @@ transparentBar（透明状态栏）radio（单选框）scroll（区域滑动）
            mui('.mui-off-canvas-wrap').offCanvas().isShown();
            isShown() 方法也可以传递 direction(方向) 参数( 非必选!! )进而可以判断左右侧滑：
            mui('.mui-off-canvas-wrap').offCanvas().isShown('left');//true
-  17.   弹出菜单--popover
-  18.   透明状态栏--transparentBar
+  17.   弹出菜单--popover   快捷键mpopover
+       弹出菜单显示内容不限，但必须包裹在一个含.mui-popover类的div中
+       <div id="popover" class="mui-popover">
+          <ul class="mui-table-view">
+            <li class="mui-table-view-cell"><a href="#">Item1</a></li>
+            <li class="mui-table-view-cell"><a href="#">Item2</a></li>
+            <li class="mui-table-view-cell"><a href="#">Item3</a></li>
+            <li class="mui-table-view-cell"><a href="#">Item4</a></li>
+            <li class="mui-table-view-cell"><a href="#">Item5</a></li>
+          </ul>
+        </div>
+    要显示、隐藏如上菜单    
+   <a href="#popover" id="openPopover" class="mui-btn mui-btn-primary mui-btn-block">打开弹出菜单</a>
+ 也可通过js弹出菜单
+  mui('.bottomPopover').popover(status[,anchor]);//'show' 'hide'   'toggle'(自动识别处理显示隐藏状态)
+  mui('.bottomPopover').popover('toggle');
+  //传入toggle参数，用户也无需关心当前是显示还是隐藏状态，mui会自动识别处理；
+     mui('.mui-popover').popover('toggle',document.getElementById("openPopover"));
+ 18.   透明状态栏--transparentBar  快捷键mtransparentBar
+ 当用户向下滚动时，标题栏逐渐由透明转变为不透明；当用户再次向上滚动时，标题栏又从不透明变为透明状态。 mui-bar-transparent
+       <header class="mui-bar mui-bar-nav mui-bar-transparent">
+        <h1 class="mui-title">标题</h1>
+      </header>
+      使用DOM API data-
+      data-top距离顶部高度(滚动到该位置即触发) data-offset滚动透明距离 data-duration过渡时间  ms   data-scrollby监听区域滚动容器  (*mui 3.5版本+支持) 默认window默认监听原生滚动,
+      <header class="mui-bar mui-bar-nav mui-bar-transparent" data-top='0' data-offset='150' data-duration='16' data-scrollby=".mui-scroll-wrapper">
+        <h1 class="mui-title">标题</h1>
+      </header>
+      使用js API
+      mui('.mui-bar-transparent').transparent({
+            top: 0,
+            offset: 150,
+            duration: 16,
+            scrollby: document.querySelector('.mui-scroll-wrapper')
+        })
+ 19.进度条progressbar    快捷键mprogressbar
+ 
+ 有准确值的进度条-----------------
+       有准确值的进度条会显示当前进度正处于整体进度的占比位置，用户可以更直观的预期完成时间；
+       <div id="demo1" class="mui-progressbar">
+          <span></span>
+       </div>
+
+       初始化：mui(container).progressbar({progress:20}).show();
+      初始化逻辑若本容器没有mui-progressbar类，会自动往它的子节点找带有mui-progressbar的，若子节点也没，则会自动创建
+       mui("#demo1").progressbar({progress:20}).show();
+       更新：mui(container).progressbar().setProgress(50);
+       关闭：mui(container).progressbar().hide();---关闭进度条一般用于动态创建（DOM中预先未定义）的进度条，调用hide方法后，会直接删掉对应的DOM节点；若已提前创建好DOM节点的进度条，调用hide方法无效；
+    无限循环进度条:----------多一个类 mui-progressbar-infinite
+     <div id="demo1" class="mui-progressbar mui-progressbar-infinite">
+        <span></span>
+      </div>
+      初始化
+     mui("#demo1").progressbar().show();
+     关闭
+     mui("#demo1").progressbar().hide();
+     
+     
+     页面顶部进度条
+       页面顶部进度条类似浏览器进度条，固定显示在页面顶部（标题导航控件下方）； 因此，若当前页面使用父子双webview模式，子页面没有标题导航组件，则需通过自定义css的方式，重定义顶部进度条的位置
+             body>.mui-progressbar{
+                        top:0
+              }
+    使用页面顶部进度条时，无需编写DOM结构，使用如下代码即可自动创建（顶部无限循环进度条同理）：
+
+            mui('body').progressbar({
+              progress: 20
+            }).show();    
+            
+  20 区域滚动 scroll  
+  21.单选框  radio
+  22.选择器  picker
   
-      
