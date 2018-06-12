@@ -259,3 +259,114 @@ MUI的原生组件：
 			if(check){
 			    mui.alert('验证通过!')
 			}
+10.列表-list    mlist
+	<ul class="mui-table-view">
+	    <li class="mui-table-view-cell">Item 1</li>
+	    <li class="mui-table-view-cell">Item 2</li>
+	    <li class="mui-table-view-cell">Item 3</li>
+	</ul>
+    1.点击高亮
+		    *点击变蓝色高亮*/
+		.mui-table-view-cell.mui-active{
+			background-color: #0062CC;
+		}
+   2.右侧添加导航箭头
+	 <ul class="mui-table-view">
+		    <li class="mui-table-view-cell">
+			<a class="mui-navigate-right">Item 1</a>
+		    </li>
+		    <li class="mui-table-view-cell">
+			<a class="mui-navigate-right">Item 2</a>
+		    </li>
+		    <li class="mui-table-view-cell">
+			<a class="mui-navigate-right">Item 3</a>
+		    </li>
+	 </ul>	
+  3.右侧添加数字角标等控件
+    <ul class="mui-table-view">
+	    <li class="mui-table-view-cell">Item 1 
+		<span class="mui-badge mui-badge-primary">11</span>
+	    </li>
+	    <li class="mui-table-view-cell">Item 2 
+		<span class="mui-badge mui-badge-success">22</span>
+	    </li>
+	    <li class="mui-table-view-cell">Item 3 
+		<span class="mui-badge">33</span>
+	    </li>
+      </ul>
+   4.media list（图文列表）
+   图文列表继承自列表组件，主要添加了.mui-media、.mui-media-object、.mui-media-body、.mui-pull-left/right几个类
+	   <ul class="mui-table-view">
+		    <li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+			    <img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">
+			    <div class="mui-media-body">
+				幸福
+				<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+			    </div>
+			</a>
+		    </li>
+	    </ul>
+   11. 数字输入框 number box    快捷键mnumbox
+        	data-numbox-step--步长 data-numbox-min--最小值 data-numbox-max--最大值
+   	<div class="mui-numbox" data-numbox-step='10' data-numbox-min='0' data-numbox-max='100'>
+		  <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+		  <input class="mui-numbox-input" type="number" />
+		  <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+	</div>
+    js方法：
+     getValue()--取值   setValue(Value)--设置值 
+     setOption(opmui(Selector).numbox().getValue()tions)--更新选项,可取值: min(Int),step(Int),max(Int)
+		     mui(Selector).numbox().getValue()
+		     mui(Selector).numbox().setValue(5)
+		     mui(Selector).numbox().setOption('step',5)
+        mui在mui.init()中会自动初始化基本控件,但是 动态添加的Numbox组件需要手动初始化
+            初始化----- - mui(Selector).numbox()
+	    
+12.滑块  range  快捷键mrange 常用于区间数字选择
+     <div class="mui-input-row mui-input-range">
+	 <label>Range</label>
+	 <input type="range" min="0" max="100">
+      </div>
+   
+ 13.开关switch    快捷键mswitch   有点击 滑动两种手势即可
+	 <!-- 默认绿色开关 -->
+	 <div class="mui-switch">
+		 <div class="mui-switch-handle"></div>
+	</div>
+	<!-- 蓝色开关关闭状态mui-switch-blue -->
+		<div class="mui-switch mui-switch-blue">
+		  <div class="mui-switch-handle"></div>
+		</div>
+	<!-- 默认开关打开状态，多了一个.mui-active类 -->
+	<div class="mui-switch mui-active">
+	  <div class="mui-switch-handle"></div>
+	</div>
+	<!-- 简洁模式开关关闭状态mui-switch-mini 隐藏on/off -->
+	<div class="mui-switch mui-switch-mini">
+	  <div class="mui-switch-handle"></div>
+	</div>
+	<!-- 简洁模式开关打开状态 -->
+	<div class="mui-switch mui-switch-mini mui-active">
+	  <div class="mui-switch-handle"></div>
+	</div>
+   js方法
+     获得当前开关状态
+      var isActive = document.getElementById("mySwitch").classList.contains("mui-active");
+	if(isActive){
+	  console.log("打开状态");
+	}else{
+	  console.log("关闭状态");  
+	}
+     切换开关状态：
+       mui("#mySwitch").switch().toggle();
+    事件：
+      document.getElementById("mySwitch").addEventListener("toggle",function(event){
+		  if(event.detail.isActive){
+		    console.log("你启动了开关");
+		  }else{
+		    console.log("你关闭了开关");  
+		  }
+		})
+  mui在mui.init()中会自动初始化基本控件,但是 动态添加的 Switch 组件需要手动初始化
+  初始化---mui('.mui-switch')['switch']()
