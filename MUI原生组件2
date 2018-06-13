@@ -192,7 +192,98 @@ transparentBar（透明状态栏）radio（单选框）scroll（区域滑动）
               progress: 20
             }).show();    
             
-  20 区域滚动 scroll  
-  21.单选框  radio
-  22.选择器  picker
+  20 区域滚动 scroll   快捷键mscroll  mscrollsegmented
+     在App开发中，div区域滚动的需求是普遍存在的，但系统默认实现又有如下问题：
+          Android平台4.0以下不支持div滚动
+          Android平台4.0以上支持div滚动，但不显示滚动条
+          弹出层的div滚动在iOS平台存在事件透传的问题
+     mui额外提供了区域滚动组件，使用时需要遵循如下DOM结构--     
+      <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+              <!--这里放置真实显示的DOM内容-->
+            </div>
+      </div>    
+  区域滚动组件默认为absolute定位，全屏显示；在实际使用过程中，需要手动设置滚动区域的位置（top和height）
+  若使用区域滚动组件，需手动初始化scroll控件
+  配置项：scroll.options
+       options = {
+               scrollY: true, //是否竖向滚动
+               scrollX: false, //是否横向滚动
+               startX: 0, //初始化时滚动至x
+               startY: 0, //初始化时滚动至y
+               indicators: true, //是否显示滚动条
+               deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+               bounce: true //是否启用回弹
+              }
+       初始化scroll
+       mui('.mui-scroll-wrapper').scroll({
+          deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+        });
+    mui中iOS平台的下拉刷新（Android平台的下拉刷新使用的是双webview+原生滚动方案）、popover、可拖动式选项卡均使用了scroll组件。 为方便大家使用，mui还额外为scroll插件封装了部分方法。
+     1.滚动到特定位置
+        scrollTo(xpos,ypos[,duration])
+        mui('.mui-scroll-wrapper').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
+     2.滚动到底部位置
+        滚动到顶部的代码比较容易实现,坐标值设为0、0即可；但滚动到底部，需要计算该区域的实际高度，因此mui封装了scrollToBottom方法。
+        scrollToBottom(duration)--
+        mui('.mui-scroll-wrapper').scroll().scrollToBottom(100);
+     3.横向滚动
+       横向滚动只需在scroll组件基础上添加mui-slider-indicatorcode mui-segmented-control mui-segmented-control-inverted这三个class即可.(给子元素添加mui-control-item可加大文字间距增强体验
+            <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                  <div class="mui-scroll">
+                      <a class="mui-control-item mui-active">
+                          推荐
+                      </a>
+                      <a class="mui-control-item">
+                          热点
+                      </a>
+                      <a class="mui-control-item">
+                          北京
+                      </a>
+                      <a class="mui-control-item">
+                          社会
+                      </a>
+                      <a class="mui-control-item">
+                          娱乐
+                      </a>
+                      <a class="mui-control-item">
+                          科技
+                      </a>
+                  </div>
+            </div>
+ 21.单选框  radio
+   1. radio默认右侧显示
+    <div class="mui-input-row mui-radio">
+        <label>radio</label>
+        <input name="radio1" type="radio">
+      </div>
+   2.  radio左侧显示 + mui-left
+      <div class="mui-input-row mui-radio mui-left">
+        <label>radio</label>
+        <input name="radio1" type="radio">
+      </div
+    3.若要禁用radio，只需在radio上增加disabled属性即可；
+
+    mui基于列表控件，提供了列表式单选实现；在列表根节点上增加.mui-table-view-radio类即可，若要默认选中某项，只需要在对应li节点上增加.mui-selected类即可，dom结构如下：
+
+          <ul class="mui-table-view mui-table-view-radio">
+            <li class="mui-table-view-cell">
+              <a class="mui-navigate-right">Item 1</a>
+            </li>
+            <li class="mui-table-view-cell mui-selected">
+              <a class="mui-navigate-right">Item 2</a>
+            </li>
+            <li class="mui-table-view-cell">
+              <a class="mui-navigate-right">Item 3</a>
+            </li>
+          </ul>
+         4.列表式单选在切换选中项时会触发selected事件，在事件参数（e.detail.el）中可以获得当前选中的dom节点，如下代码打印当前选中项的innerHTML：
+
+              var list = document.querySelector('.mui-table-view.mui-table-view-radio');
+              list.addEventListener('selected',function(e){
+                console.log("当前选中的为："+e.detail.el.innerText);
+              });
+ 22.选择器  picker
+ 
+ 
   
