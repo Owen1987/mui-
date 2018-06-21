@@ -284,6 +284,39 @@ transparentBar（透明状态栏）radio（单选框）scroll（区域滑动）
                 console.log("当前选中的为："+e.detail.el.innerText);
               });
  22.选择器  picker
- 
- 
+   poppicker和dtpicker是对picker的具体实现
+    ----- popPicker适用于弹出单级或多级选择器
+     -----dtpicker组件适用于弹出日期选择器
+ poppicker组件依赖mui.picker.js/.css mui.poppicker.js/.css请务必在mui.js/css后中引用,也可统一引用 压缩版本:mui.picker.min.js
+    使用3部曲：  
+            1.通过new mui.PopPicker()初始化popPicker组件
+                var picker = new mui.PopPicker(); // var picker = new mui.PopPicker({layer:3(列),buttons:['cancle','ok']}); 
+            2.给picker对象添加数据
+                 setData() 支持数据格式为: 数组
+                 picker.setData([{value:'zz',text:'智子'}]); 
+            3.显示picker
+                picker.show( SelectedItemsCallback ) 
+      举例：
+ <form id='login-form3' class="mui-input-group">
+				<div class="mui-input-row" id='workTimes'>
+					<label>从业年限 </label>
+					<input id='workTime' type="text" class="mui-input-clear mui-input" placeholder="请选择">
+				</div>
+	</form>
+  var workTimesPicker= new $.PopPicker();
+				     var arr=[];
+					for(var i=1;i<51;i++){
+					   var obj={text:i};
+					   arr.push(obj);
+					}
+						workTimesPicker.setData(arr);
+					var  workTimes=doc.getElementById('workTimes');
+					var  workTimeResult=doc.getElementById('workTime');
+					     workTimes.addEventListener('tap', function(event) {
+						   workTimesPicker.show(function(items) {
+							workTimeResult.value =items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
   
