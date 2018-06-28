@@ -122,6 +122,8 @@ DCloud学习路线
 -----------React Native
 能够在Javascript和React的基础上获得完全一致的开发体验，构建世界一流的原生APP。
 仅需学习一次，编写任何平台。(Learn once, write anywhere)
+针对ios和andriod不太平台 需要两台代码
+ 参考 https://blog.csdn.net/jiangbo_phd/article/details/52794470
 缺点：
 初次学习成本高
 必须在不同平台下写两套代码，依赖暴露的接口
